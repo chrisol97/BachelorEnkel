@@ -47,10 +47,10 @@ Start(startscreen);
 
 function startscreen() {
     const startscreenobject = new Blocks.Image("Bilder/Karakterer/mainCharClosedMouth.png", {x: 325, y: 150, width: 400, height:500 });
-    const skipbutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 200, y: 200, width: 200, height: 200});                           // HUSK Å FJERNE DETTE
+   /* const skipbutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 200, y: 200, width: 200, height: 200});                           // HUSK Å FJERNE DETTE
     Actions.Click(skipbutton, () => {
         GaaTil(scene5);
-    })
+    })*/
     Actions.Click(startscreenobject, () => {
         GaaTil(titlescreen);
     })
@@ -84,10 +84,12 @@ function scene1() {
     mainChar.hide();
     const mainCharTalking = new Blocks.CellAnimation(["Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharOpenMouth.png"], {x: 420, y: 400, width: 250, height: 400, loop: true, auto: true});
     const continuebutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 800, y: 500, width: 150, height: 150});
+    continuebutton.hide();
     Actions.Tween(flyingplane, 6.5, 0);
     mainCharVoiceIntro1.onended = () => {
         mainCharTalking.hide();
         mainChar.show();
+        continuebutton.show();
     }
     Actions.Click(continuebutton, () => {
         flyingplanesound.pause();
@@ -108,6 +110,7 @@ function scene2() {
     mainCharTalking.hide();
     const continueButton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 700, y: 50, width: 150, height: 150});
     const mainCharMoving = Actions.Tween(mainChar, -10, 6);
+    continueButton.hide();
     Actions.Colide(mainChar, yellowball, () => {Actions.Tween(yellowball, -10, 10)});                       // Spørre hvordan jeg kan stoppe denne
     Actions.Colide(mainChar, yellowball, () => {mainCharMoving.pause()});
     Actions.Colide(mainChar, yellowball, () => {boingsound.play()});
@@ -137,6 +140,7 @@ function scene2() {
         mainCharTalking.hide();
         mainChar.show();
         Actions.Tween(mainChar, -10, 6);
+        continueButton.show();
 
     }
     Actions.Click(continueButton, () => {
@@ -157,6 +161,7 @@ function scene3() {
     mainCharTalking.hide();
     catTalking.hide();
     const continueButton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 550, y: 50, width: 150, height: 150});
+    continueButton.hide();
     const mainCharMoving = Actions.Tween(mainChar, -10, 0);
     Actions.Colide(mainChar, catStanding, () => {mainCharMoving.pause()});
     Actions.Colide(mainChar, catStanding, () => {ouchCatMainChar.play()});             
@@ -186,6 +191,7 @@ function scene3() {
         mainCharTalking.hide();
         mainChar.show();
         Actions.Tween(mainChar, 10, 0);
+        continueButton.show();
         
     }
     Actions.Click(continueButton, () => {
@@ -210,6 +216,7 @@ function scene4() {
     mainCharTalking.hide();
     styrerPlaceholderTalking.hide();
     const continueButton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 700, y: 50, width: 150, height: 150});
+    continueButton.hide();
     const mainCharMoving = Actions.Tween(mainChar, -7, 0);
     Actions.Colide(mainChar, styrerPlaceholder, () => {
         mainCharMoving.pause();
@@ -239,6 +246,7 @@ function scene4() {
     mainCharVoiceIntro8.onended = () => {
         mainCharTalking2.hide();
         mainChar2.show();
+        continueButton.show();
     }
     Actions.Click(continueButton, () => {
         mainCharVoiceIntro6.pause();
