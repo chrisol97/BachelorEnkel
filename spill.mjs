@@ -67,27 +67,24 @@ function titlescreen() {
     const cattitlescreen = new Blocks.Image("Bilder/Karakterer/catClosedMouth.png", {x: 600, y: 490, width: 350, height: 300});
     const mantitlescreen = new Blocks.Image("Bilder/Karakterer/manClosedMouth.png", {x: 780, y: 330, width: 50, height: 100});
     const mainchartitlescreen = new Blocks.Image("Bilder/Karakterer/mainCharClosedMouth.png", {x: 200, y: 440, width: 200, height: 350});
-    titlescreenmusic.onended = () => {
+    const startbutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 420, y: 500, width: 150, height: 150});
+    Actions.Click(startbutton, () => {
+        titlescreenmusic.pause();
         GaaTil(scene1);
-    }
+    })
+    
 }
 
 function scene1() {
+    mainCharVoiceIntro1.play();
+    flyingplanesound.play();
     const scene1background = new Blocks.Image("Bilder/Bakgrunner/kindergartenOutside.png", {x: -8, y: -8, width: 1088, height: 818});
-    const mainChar = new Blocks.Image("Bilder/Karakterer/mainCharClosedMouth.png", {x: 420, y: 800, width: 250, height: 400});
     const flyingplane = new Blocks.Image("Bilder/Objekter/plane.png", { x: -250, y: 0, width: 220, height: 150});
-    const mainCharMoving = Actions.Tween(mainChar, 0, -9);
-    Utils.Bound(mainChar, Utils.Bounds(0, 400 , 1000, 5000), () => {
-        mainChar.hide();
-        mainCharMoving.pause();
-        Actions.Tween(flyingplane, 6.5, 0);
-        flyingplanesound.play();
-        new Blocks.CellAnimation(["Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharOpenMouth.png"], {x: 420, y: 400, width: 250, height: 400, loop: true, auto: true});
-        mainCharVoiceIntro1.play();
-    })
-    mainCharVoiceIntro1.onended = () => {
-        GaaTil(scene2);
-    }
+    
+    const mainCharTalking = new Blocks.CellAnimation(["Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharOpenMouth.png"], {x: 420, y: 400, width: 250, height: 400, loop: true, auto: true});
+    const continuebutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 800, y: 500, width: 150, height: 150});
+    Actions.Tween(flyingplane, 6.5, 0);
+
 }
 
 function scene2() {
