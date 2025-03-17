@@ -80,10 +80,20 @@ function scene1() {
     flyingplanesound.play();
     const scene1background = new Blocks.Image("Bilder/Bakgrunner/kindergartenOutside.png", {x: -8, y: -8, width: 1088, height: 818});
     const flyingplane = new Blocks.Image("Bilder/Objekter/plane.png", { x: -250, y: 0, width: 220, height: 150});
-    
+    const mainChar = new Blocks.Image("Bilder/Karakterer/mainCharClosedMouth.png", {x: 420, y: 400, width: 250, height: 400});
+    mainChar.hide();
     const mainCharTalking = new Blocks.CellAnimation(["Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharOpenMouth.png"], {x: 420, y: 400, width: 250, height: 400, loop: true, auto: true});
     const continuebutton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 800, y: 500, width: 150, height: 150});
     Actions.Tween(flyingplane, 6.5, 0);
+    mainCharVoiceIntro1.onended = () => {
+        mainCharTalking.hide();
+        mainChar.show();
+    }
+    Actions.Click(continuebutton, () => {
+        flyingplanesound.pause();
+        mainCharVoiceIntro1.pause();
+        GaaTil(scene2);
+    })
 
 }
 
