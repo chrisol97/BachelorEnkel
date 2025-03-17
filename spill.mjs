@@ -104,9 +104,9 @@ function scene2() {
     const yellowball = new Blocks.Image("Bilder/Objekter/yellowBall1.png", {x: 550, y: 550, width: 100, height: 100});
     const mainCharTalking = new Blocks.CellAnimation(["Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharClosedMouth.png", "Bilder/Karakterer/mainCharOpenMouth.png"], {x: 595, y: 303, width: 200, height: 250, loop: true, auto: true});
     const giraffeTalking = new Blocks.CellAnimation(["Bilder/Karakterer/giraffeClosedMouth.png", "Bilder/Karakterer/giraffeClosedMouth.png", "Bilder/Karakterer/giraffeClosedMouth.png", "Bilder/Karakterer/giraffeOpenMouth.png"], {x: 200, y: 200, width: 200, height: 400, loop: true, auto: true});
-    const triggerObject = new Blocks.Image("Bilder/Objekter/block3.png", {x: 50, y: 850, width: 20, height: 20});
     giraffeTalking.hide();
     mainCharTalking.hide();
+    const continueButton = new Blocks.Image("Bilder/Knapper/continueButton.png", {x: 700, y: 50, width: 150, height: 150});
     const mainCharMoving = Actions.Tween(mainChar, -10, 6);
     Actions.Colide(mainChar, yellowball, () => {Actions.Tween(yellowball, -10, 10)});                       // Spørre hvordan jeg kan stoppe denne
     Actions.Colide(mainChar, yellowball, () => {mainCharMoving.pause()});
@@ -139,9 +139,13 @@ function scene2() {
         Actions.Tween(mainChar, -10, 6);
 
     }
-    Actions.Colide(mainChar, triggerObject, () => {
+    Actions.Click(continueButton, () => {
+        boingsound.pause();
+        mainCharVoiceIntro2.pause();
+        giraffeVoiceIntro1.pause();
+        mainCharVoiceIntro3.pause();
         GaaTil(scene3);
-    });
+    })
 }
 
 function scene3() {
